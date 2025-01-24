@@ -91,6 +91,10 @@ PACKAGE=$(sed 's/\.[A-Za-z_$][^.]*$//' "$D4J_FILE_TARGET_CLASSES" | uniq -c | so
 # Build the test-generation command
 cmd="java -ea -classpath $project_cp:$D4J_DIR_TESTGEN_LIB/randoop-current.jar \
   $BOOT_CLASS_PATH_ARG \
+  -XX:+UseConcMarkSweepGC \
+  -XX:-UseGCOverheadLimit \
+  -Xms15G \
+  -Xmx15G \
   -javaagent:$D4J_DIR_TESTGEN_LIB/replacecall-current.jar \
   -javaagent:$D4J_DIR_TESTGEN_LIB/covered-class-current.jar \
   $EXTRA_JAVA_AGENT_ARG \
@@ -102,6 +106,7 @@ randoop.main.Main gentests \
   --junit-output-dir=$D4J_DIR_OUTPUT \
   --randomseed=$D4J_SEED \
   --time-limit=$D4J_TOTAL_BUDGET \
+  --output-limit=$D4J_TEST_LIMIT \
   --regression-test-basename=$REG_BASE_NAME \
   --error-test-basename=$ERR_BASE_NAME \
   $add_config"

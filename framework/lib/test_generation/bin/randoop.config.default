@@ -12,3 +12,6 @@
 --only-test-public-members=false
 --omit-methods=HashCodeAndEqualsSafeSet.of
 --omit-methods=CSVPrinter.close
+--field-coverage-metrics=true
+--field-coverage-env=field_coverage_metrics.env
+#--field-coverage-env=framework/lib/test_generation/generation/randoop-4.2.5/field_coverage_metrics.env

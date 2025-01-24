@@ -101,19 +101,19 @@ main() {
     #
     echo
     echo "Setting up Randoop ... "
-    RANDOOP_VERSION="4.3.3"
-    RANDOOP_URL="https://github.com/randoop/randoop/releases/download/v${RANDOOP_VERSION}"
-    RANDOOP_ZIP="randoop-${RANDOOP_VERSION}.zip"
-    RANDOOP_JAR="randoop-all-${RANDOOP_VERSION}.jar"
-    REPLACECALL_JAR="replacecall-${RANDOOP_VERSION}.jar"
-    COVEREDCLASS_JAR="covered-class-${RANDOOP_VERSION}.jar"
-    (cd "$DIR_LIB_GEN" && download_url_and_unzip "$RANDOOP_URL/$RANDOOP_ZIP")
-    # Set symlink for the supported version of Randoop
-    (cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$RANDOOP_JAR" "randoop-current.jar")
-    (cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$REPLACECALL_JAR" "replacecall-current.jar")
-    (cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$COVEREDCLASS_JAR" "covered-class-current.jar")
-    (cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/jacocoagent.jar" "jacocoagent.jar")
-
+	RANDOOP_VERSION="4.2.5"
+	RANDOOP_URL="file:///home/stein/Projects/Research/randoop_4_2_5/zip_folder"
+	RANDOOP_ZIP="randoop-${RANDOOP_VERSION}.zip"
+	RANDOOP_JAR="randoop-all-${RANDOOP_VERSION}.jar"
+	REPLACECALL_JAR="replacecall-${RANDOOP_VERSION}.jar"
+	COVEREDCLASS_JAR="covered-class-${RANDOOP_VERSION}.jar"
+	(cd "$DIR_LIB_GEN" && download_url_and_unzip "$RANDOOP_URL/$RANDOOP_ZIP")
+	# Set symlink for the supported version of Randoop
+	(cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$RANDOOP_JAR" "randoop-current.jar")
+	(cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$REPLACECALL_JAR" "replacecall-current.jar")
+	(cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$COVEREDCLASS_JAR" "covered-class-current.jar")
+	(cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/jacocoagent.jar" "jacocoagent.jar")
+    
     ############################################################################
     #
     # Download build system dependencies
@@ -174,7 +174,7 @@ main() {
     echo "|------------------------------------------------------------------------|"
     echo "| Important changes:                                                     |"
     echo "|   * Java 11 is required                                                |"
-    echo "|   * Randoop v4.3.3                                                     |"
+    echo "|   * Randoop v4.2.5                                                     |"
     echo "|   * Major v3.0.1                                                       |"
     echo "|------------------------------------------------------------------------|"
 }
@@ -262,5 +262,3 @@ get_modification_timestamp() {
     local ts; ts=$($cmd)
     echo "$ts"
 }
-
-main

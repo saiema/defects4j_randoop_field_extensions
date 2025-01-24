@@ -30,7 +30,7 @@ gen_tests.pl -- generate a test suite using one of the supported test generators
 
 =head1 SYNOPSIS
 
-  gen_tests.pl -g generator -p project_id -v version_id -n test_id -o out_dir -b total_budget [-c target_classes] [-s random_seed] [-t tmp_dir] [-E] [-D]
+  gen_tests.pl -g generator -p project_id -v version_id -n test_id -o out_dir -b total_budget [-l test_limit] [-c target_classes] [-s random_seed] [-t tmp_dir] [-E] [-D]
 
 =head1 OPTIONS
 
@@ -64,6 +64,11 @@ F<out_dir/project_id/version_id>.
 =item -b C<total_budget>
 
 The total time in seconds allowed for test generation.
+
+=item -l C<test_limit>
+
+Limits how many tests to generate. By default, the limit is 100000000.
+Format: C<\d+>.
 
 =item -c F<classes_file>
 
@@ -151,7 +156,7 @@ use Log;
 # Process arguments and issue usage message if necessary.
 #
 my %cmd_opts;
-getopts('g:p:v:o:n:b:c:s:t:ED', \%cmd_opts) or pod2usage(1);
+getopts('g:p:v:o:n:b:c:s:t:l:ED', \%cmd_opts) or pod2usage(1);
 my $TOOL = $cmd_opts{g};
 # Print all supported generators, regardless of the other arguments, if -g help
 # is set
@@ -183,6 +188,9 @@ $TID =~ /^\d+$/ or die "Wrong test_id format (\\d+): $TID!";
 # Verify that the provided time budget is valid
 my $TIME = $cmd_opts{b};
 $TIME =~ /^\d+$/ or die "Wrong budget format (\\d+): $TIME!";
+
+# Set or compute the tests limit
+my $TEST_LIMIT = $cmd_opts{l} // 100000000;
 
 my $OUT_DIR = $cmd_opts{o};
 
@@ -241,6 +249,7 @@ $LOG->log_msg(" -n $TID");
 $LOG->log_msg(" -b $TIME");
 $LOG->log_msg(" -c $TARGET_CLASSES");
 $LOG->log_msg(" -s $SEED");
+$LOG->log_msg(" -l $TEST_LIMIT");
 
 # Export all environment variables that are expected by the wrapper script of
 # the test generator.
@@ -255,6 +264,7 @@ $ENV{D4J_TOTAL_BUDGET}        = "$TIME";
 $ENV{D4J_SEED}                = "$SEED";
 $ENV{D4J_TEST_MODE}           = "$MODE";
 $ENV{D4J_DEBUG}               = "$DEBUG";
+$ENV{D4J_TEST_LIMIT}          = "$TEST_LIMIT";
 
 # Create temporary output directory
 Utils::exec_cmd("mkdir -p $TMP_DIR/$TOOL", "Creating temporary output directory")
