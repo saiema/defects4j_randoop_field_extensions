@@ -262,3 +262,5 @@ get_modification_timestamp() {
     local ts; ts=$($cmd)
     echo "$ts"
 }
+
+main
