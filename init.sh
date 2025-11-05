@@ -102,7 +102,7 @@ main() {
     echo
     echo "Setting up Randoop ... "
 	RANDOOP_VERSION="4.2.5"
-	RANDOOP_URL="file:///home/stein/Projects/Research/randoop_4_2_5/zip_folder"
+	RANDOOP_URL="file:///home/stein/Projects/Research/object-variability-metric/randoop_4_2_5/zip_folder"
 	RANDOOP_ZIP="randoop-${RANDOOP_VERSION}.zip"
 	RANDOOP_JAR="randoop-all-${RANDOOP_VERSION}.jar"
 	REPLACECALL_JAR="replacecall-${RANDOOP_VERSION}.jar"
