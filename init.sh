@@ -113,6 +113,7 @@ main() {
 	(cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$REPLACECALL_JAR" "replacecall-current.jar")
 	(cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/$COVEREDCLASS_JAR" "covered-class-current.jar")
 	(cd "$DIR_LIB_GEN" && ln -sf "randoop-${RANDOOP_VERSION}/jacocoagent.jar" "jacocoagent.jar")
+	(ln -sf "$DIR_LIB_GEN/randoop-${RANDOOP_VERSION}/field_coverage_metrics.env" "${BASE}/field_coverage_metrics.env")
     
     ############################################################################
     #
