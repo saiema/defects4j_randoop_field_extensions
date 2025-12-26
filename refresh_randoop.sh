@@ -28,6 +28,10 @@ infoMessage "Removing $RANDOOP_DIR..."
 rm -rf "$RANDOOP_DIR"
 infoMessage "removed"
 
+infoMessage "Removing field_coverage_metrics.env..."
+[ -f "field_coverage_metrics.env" ] && rm "field_coverage_metrics.env"
+infoMessage "removed"
+
 infoMessage "Running $INIT_SCRIPT..."
 $INIT_SCRIPT
 infoMessage "done"
